@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "csv": "^6.1.5",
+    "puppeteer": "^15.3.2",
+    "yargs": "^17.5.1"
+  }
+}
