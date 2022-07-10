@@ -9,7 +9,7 @@ depressr is a web scraper written in Javascript. Its primary purpose is to extra
 
 In herbariums, vascular plants are stored physically as "presses", flattened sample material. With this program we're extracting the database of presses, thus "depressing" it. The lack of final "e" is because I'm gay.
 
-## How to use
+## Usage
 
 The bare code,
 
@@ -24,6 +24,8 @@ pops up usage. Below is a list of argument pairs to use (note that not all argum
   - `--state [state]` selects by US state
   - `--county [county]` selects by US county. Can be helpful to use alongside `--state`, but not required
   - `--collector [collector]` selects by who collected. If a multi-word argument, takes only the first word and assumes it's the last name.
+  - `--outputType [csv/json]` changes the format of output. Defaults to `csv`
+  - `--outputDir
 
 ## Install
 
