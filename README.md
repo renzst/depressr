@@ -1,9 +1,11 @@
 # depressr
 
-depressr is a web scraper written in Javascript. Its primary purpose is to extract herbarium records from target herbaria. Current targets include:
+`depressr` is a web scraper written in Javascript. Its primary purpose is to extract herbarium records from target herbaria. Current targets include:
 
   - University of South Florida's [Atlas of Florida Plants](https://florida.plantatlas.usf.edu/)
   - University of Florida Florida Museum [Herbairum Collections](https://www.floridamuseum.ufl.edu/herbarium/cat/catsearch.htm)
+
+Because of the very different methods for scraping between USF and the FLAS (UF) herbaria, they have diverged into two different code blocks with an argument wrapper.
 
 ## Why the name?
 
