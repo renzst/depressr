@@ -2,11 +2,13 @@
 // USF variant
 
 // Modules
-const puppeteer = require('puppeteer'); // headless chrome
+const puppeteer = require('puppeteer-extra') // headless chrome
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const fs = require('fs');
 const path = require("path");
 const csvMerger = require("csv-merger");
 
+puppeteer.use(StealthPlugin());
 
 // Parameters
 const p = {
@@ -86,7 +88,7 @@ const paginate = async (page, sels) => {
 const processResults = async (page, sels, args) => {
     await page.screenshot({path: "./screenshot.png", fullPage: true})
 
-    let resultsText = await page.$eval(sels.results.total, el => el.textContent);
+    let resultsText;
     try {
         resultsText = await page.$eval(sels.results.total, el => el.textContent);
     }
@@ -116,7 +118,10 @@ const processResults = async (page, sels, args) => {
 
 const initBrowser = async (args) => {
     console.log("Starting browser...");
-    const browser = await puppeteer.launch( {args: [`--window-size=1600,900`], headless: !args.headed} );
+    const browser = await puppeteer.launch({
+        args: [`--window-size=2149,1600`], 
+        headless: !args.headed},
+         );
     const page = await browser.newPage();
 
     const client = await page.target().createCDPSession();
@@ -143,8 +148,9 @@ const usf = async (args) => {
 
     const resultsPage = await submitQuery(page, p, args);
 
+    browser.close();
+    
     if (await processResults(resultsPage, p, args)) {
-        browser.close();
 
         const dirContents = fs.readdirSync(path.resolve("./tmp")).map(x => "./tmp/" + x);
         const outputPath = path.resolve(args.outputDir, args.outputFile.toString(), ".csv");
